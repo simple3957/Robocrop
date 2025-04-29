@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h2 id="soil-moisture">--</h2>
+                            <h2 id="">66</h2>
                             <span class="text-muted">%</span>
                         </div>
                         <iframe width="100%" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2860103/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Humidity&type=line&xaxis=Time"></iframe>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h2 id="soil-temp">--</h2>
+                            <h2 id="">29.8</h2>
                             <span class="text-muted">°C</span>
                         </div>
                         <iframe width="100%" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2860103/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&xaxis=Time"></iframe>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h2 id="humidity">351.16</h2>
+                            <h2 id="">351.16</h2>
                             <span class="text-muted">%</span>
                         </div>
                         <iframe width="100%" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2860103/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=Air+Quality+Index&type=line&xaxis=Time&yaxis=Air+quality"></iframe>
@@ -122,22 +122,7 @@
                 </div>
             </div>
         </div>
-        <!-- servomotor control -->
-        <div class="card mt-4">
-            <div class="card-header">
-                <h5 class="card-title">Servo Motor Control</h5>
-            </div>
-            <div class="card-body">
-                <div class="d-flex align-items-center mb-3">
-                    <span id="servo-status" class="me-3">Status: OFF</span>
-                    <span id="servo-indicator" class="badge bg-danger"></span>
-                </div>
-                <div class="d-flex gap-2">
-                    <button id="servo-on" class="btn btn-success">Turn ON</button>
-                    <button id="servo-off" class="btn btn-danger">Turn OFF</button>
-                </div>
-            </div>
-        </div>
+
         
     </div>
 
@@ -145,3 +130,5 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
+
+

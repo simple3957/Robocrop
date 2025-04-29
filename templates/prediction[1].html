@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pest Outbreak Prediction</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    /* Body styles */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #e8f5e9;
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #2d572c;
+        color: white;
+        padding: 15px 50px;
+    }
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+    .nav-links li {
+        display: inline;
+    }
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+    }
+
+    /* Container styles */
+    .container {
+        background-color: white; /* White background for container */
+        padding: 40px;
+        text-align: center;
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow effect */
+        width: 500px; /* Set the container width */
+        margin:200px;
+        margin-left:450px;
+    }
+
+    /* Heading styles */
+    h1 {
+        color: black; /* Black text for the heading */
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    /* Button container styles */
+    .buttons-container {
+        display: flex; /* Use flexbox to arrange buttons side by side */
+        justify-content: space-between; /* Space between the buttons */
+        width: 100%;
+        margin-left: 132px;
+    }
+
+    /* Button styles */
+    .button {
+        background-color: #800080; /* Purple button color */
+        color: white;
+        font-size: 18px;
+        padding: 20px; /* Equal padding for a square shape */
+        margin: 5px;
+        border: none;
+        border-radius: 15px; /* Rounded corners */
+        cursor: pointer;
+        width: 45%; /* Button width set to 45% of the container */
+        text-align: center; /* Center the text inside the button */
+    }
+
+    .button:hover {
+        background-color: #6a006a; /* Darker purple on hover */
+    }
+    .temp{
+        margin:20px;
+    }
+    .hum{
+        margin:20px;
+    }
+</style>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">NewEra</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#featured">Featured</a></li>
+                <li><a href="#chatbot">Chatbot</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Pest Outbreak Prediction</h1>
+
+        <!-- Input fields for Temperature and Humidity -->
+        <div class="temp">
+            <label for="temperature">Enter Temperature (°C): </label>
+            <input type="number" id="temperature" name="temperature">
+        </div>
+        <div class="hum">
+            <label for="humidity">Enter Humidity (%): </label>
+            <input type="number" id="humidity" name="humidity">
+        </div>
+
+        <!-- Button to send Telegram alert -->
+        <button class="button" onclick="sendTelegramAlert()">Predict Pest Outbreak</button>
+
+        <!-- Back Button -->
+        <div class="buttons-container">
+            <button class="button" onclick="window.location.href='index.html'">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        function sendTelegramAlert() {
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            const humidity = parseFloat(document.getElementById('humidity').value);
+
+            if (isNaN(temperature) || isNaN(humidity)) {
+                alert('⚠️ Please enter valid numeric values for temperature and humidity.');
+                return;
+            }
+
+            const botToken = "7998884702:AAFccFsaT0STx5PyGcdsZxUAVeydEveQeoU";
+            const chatId = "1707908536";
+
+            let message = `🌡 Temperature: ${temperature}°C\n💧 Humidity: ${humidity}%\n`;
+
+            // Define pest outbreak conditions (Adjust as needed)
+            if (temperature > 35 || humidity > 80) {
+                message += "🚨 *High chance of pest outbreak!*\n⚠️ Take necessary precautions.";
+            } else {
+                message += "✅ *No significant risk of pest outbreak.*\n😊 Conditions are stable.";
+            }
+
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        alert('✅ Telegram alert sent successfully!');
+                    } else {
+                        alert('❌ Failed to send Telegram alert.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('❌ Error sending Telegram alert.');
+                });
+        }
+    </script>
+</body>
+</html>
